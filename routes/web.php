@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'basicauth'], function() {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
