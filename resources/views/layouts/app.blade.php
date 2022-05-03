@@ -68,7 +68,7 @@
                                 </li>
                             </li>
                             <li class="nuv-item">
-                                <a class="nav-link" href="{{ route('register') }}">投稿する</a>
+                                <a class="nav-link" href="{{ route('create') }}">投稿する</a>
                             </li>
                         @endguest
                     </ul>
