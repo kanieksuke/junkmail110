@@ -31,4 +31,11 @@ class HomeController extends Controller
         $user = \Auth::user();
         return view('create', compact('user'));
     }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+        $post_id = Post::insertGetId(['title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['user_id'], 'status' => 1]);
+    }
 }
