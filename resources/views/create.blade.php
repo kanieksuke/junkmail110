@@ -12,10 +12,10 @@
                         @csrf
                         <input type='hidden' name='user_id' value="{{ $user['id'] }}">
                         <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('タイトル') }}</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-right" name='title'>{{ __('タイトル') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" title="title">
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title">
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                         <div class="form-group row">
                         <label for="image" class="col-md-4 col-form-label text-md-right"></label>
                             <div class="col-md-6">
-                                <input id="image" type="file" class="form-control @error('password') is-invalid @enderror" name="image">
+                                <input id="image" type="file" class="form-control @error('file') is-invalid @enderror" name="image">
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $image }}</strong>
