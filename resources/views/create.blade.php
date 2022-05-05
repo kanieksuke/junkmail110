@@ -8,55 +8,56 @@
                 <div class="card-header">新規投稿</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/store">
-                        @csrf
-                        <input type='hidden' name='user_id' value="{{ $user['id'] }}">
+                    {{Form::open(['url' => '/store', 'files' => true, 'method' => 'post'])}}
+                    @csrf
+                        {{Form::hidden('userId', $user['id'])}}
                         <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label text-md-right" name='title'>{{ __('タイトル') }}</label>
-
+                            {{Form::label('title', 'タイトル', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title">
-                                @error('title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                {{Form::text('title', null, ['class' => 'form-control' , 'id' => 'title'])}}
+                                <!-- @error('title') -->
+                                    <!-- <span class="invalid-feedback" role="alert"> -->
+                                        <!-- <strong>{{ $message }}</strong> -->
+                                    <!-- </span> -->
+                                <!-- @enderror -->
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('本文') }}</label>
-
+                            {{Form::label('content', '本文', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                             <div class="col-md-6">
-                                <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content"></textarea>
-                                @error('content')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                {{Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content'])}}
+                                <!-- @error('content') -->
+                                    <!-- <span class="invalid-feedback" role="alert"> -->
+                                        <!-- <strong>{{ $message }}</strong> -->
+                                    <!-- </span> -->
+                                <!-- @enderror -->
                             </div>
                         </div>
 
                         <div class="form-group row">
                         <label for="image" class="col-md-4 col-form-label text-md-right"></label>
                             <div class="col-md-6">
-                                <input id="image" type="file" class="form-control @error('file') is-invalid @enderror" name="image">
-                                @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $image }}</strong>
-                                    </span>
-                                @enderror
+                                <!-- <input id="image" type="file" class="form-control @error('file') is-invalid @enderror" name="image"> -->
+                                {{Form::file('image', ['class' => 'custom-file-input', 'id' => 'image'])}}
+                                {{Form::label('file', 'ファイル選択…', ['class' => 'custom-file-label'])}}
+                                <!-- @error('image') -->
+                                    <!-- <span class="invalid-feedback" role="alert"> -->
+                                        <!-- <strong>{{ $image }}</strong> -->
+                                    <!-- </span> -->
+                                <!-- @enderror -->
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <!-- <button type="submit" class="btn btn-primary"> -->
                                     {{ __('送信') }}
                                 </button>
+                                {{Form::submit('送信', ['class' => 'btn btn-primary btn-block'])}}
                             </div>
                         </div>
-                    </form>
+                    {{Form::close()}}
                 </div>
             </div>
         </div>
