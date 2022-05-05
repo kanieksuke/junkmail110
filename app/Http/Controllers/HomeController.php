@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $posts = Post::where('status', 1)->orderBy('updated_at', 'desc')->get();
+        return view('index', compact('posts'));
     }
 
     public function create()
