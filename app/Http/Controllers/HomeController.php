@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,21 @@ class HomeController extends Controller
     public function index()
     {
         return view('index');
+    }
+
+    public function create()
+    {
+        $user = \Auth::user();
+        return view('create', compact('user'));
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        $post_id = Post::insertGetId([
+            'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['user_id'], 'status' => 1
+        ]);
+
+        return redirect()->route('home');
     }
 }
