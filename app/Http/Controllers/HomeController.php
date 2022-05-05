@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Memo;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,10 @@ class HomeController extends Controller
     {
         $data = $request->all();
         dd($data);
-        $post_id = Post::insertGetId(['title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['user_id'], 'status' => 1]);
+        $post_id = Post::insertGetId([
+            'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['user_id'], 'status' => 1
+        ]);
+
+        return redirect()->route('home');
     }
 }
