@@ -37,7 +37,6 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
         $post_id = Post::insertGetId([
             'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['userId'], 'status' => 1
         ]);
@@ -52,5 +51,12 @@ class HomeController extends Controller
         ->storeAs('public/image', $post_id.'.'.$request->image->extension());
         }
         return redirect()->route('home');
+    }
+
+    public function detail($id){
+        $user = \Auth::user();
+        $post = Post::where('status', 1)->where('id', $id)
+         ->first();
+        return view('detail',compact('post', 'user'));
     }
 }
