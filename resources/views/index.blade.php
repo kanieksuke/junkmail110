@@ -21,7 +21,7 @@
                                     <img src="/storage/image/{{ $post->id }}.gif" width=300px/>
                                 @endif
                             </div>
-                            <a href="/detail/{{$post->id}}">詳細</a>
+                            <a href="/show/{{$post->id}}">詳細</a>
                     </div>
                 @endforeach
             </div>

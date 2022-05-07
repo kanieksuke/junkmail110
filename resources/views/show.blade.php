@@ -20,6 +20,7 @@
                             <img src="/storage/image/{{ $post->id }}.gif" width=300px/>
                         @endif
                     </div>
+                    {{ $post['content']}}
                 </div>
             </div>
         </div>

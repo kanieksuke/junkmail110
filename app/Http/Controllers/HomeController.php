@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -53,8 +54,8 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
 
-    public function detail($id){
-        $post = \App\Post::findOrFail($id);
-        return view('detail',compact('post'))->with('post',$post);
+    public function show($id){
+        $post = Post::find($id);
+        return view('show',compact('post'))->with('post',$post);
     }
 }
