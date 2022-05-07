@@ -21,7 +21,7 @@
                                     <img src="/storage/image/{{ $post->id }}.gif" width=300px/>
                                 @endif
                             </div>
-                        <!-- You are logged in! -->
+                            <a href="/post/detail/{{$post->id}}">詳細</a>
                     </div>
                 @endforeach
             </div>
