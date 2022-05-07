@@ -54,9 +54,7 @@ class HomeController extends Controller
     }
 
     public function detail($id){
-        $user = \Auth::user();
-        $post = Post::where('status', 1)->where('id', $id)
-         ->first();
-        return view('detail',compact('post', 'user'));
+        $post = \App\Post::findOrFail($id);
+        return view('detail',compact('post'))->with('post',$post);
     }
 }
