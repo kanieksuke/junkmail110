@@ -40,7 +40,7 @@
                             <div class="col-md-6">
                                 <!-- <input id="image" type="file" class="form-control @error('file') is-invalid @enderror" name="image"> -->
                                 {{Form::file('image', ['class' => 'custom-file-input', 'id' => 'image'])}}
-                                {{Form::label('file', 'ファイル選択…', ['class' => 'custom-file-label'])}}
+                                {{Form::label('image', 'ファイル選択…', ['class' => 'custom-file-label'])}}
                                 <!-- @error('image') -->
                                     <!-- <span class="invalid-feedback" role="alert"> -->
                                         <!-- <strong>{{ $image }}</strong> -->

@@ -42,6 +42,15 @@ class HomeController extends Controller
             'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['userId'], 'status' => 1
         ]);
 
+        if($request->image->extension() == 'gif'
+        || $request->image->extension() == 'jpeg'
+        || $request->image->extension() == 'jpg'
+        || $request->image->extension() == 'png')
+
+        {
+        $request->file('image')
+        ->storeAs('public/image', $post_id.'.'.$request->image->extension());
+        }
         return redirect()->route('home');
     }
 }

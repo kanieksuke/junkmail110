@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                             <div class="alert alert-success" role="alert">
-                                {{ $post['image'] }}
+                                <img src="{{ asset('storage/image/' . $post->image) }}" />
                             </div>
                         <!-- You are logged in! -->
                     </div>
