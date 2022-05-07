@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $posts = Post::where('status', 1)->orderBy('updated_at', 'desc')->get();
+        return view('index', compact('posts'));
     }
 
     public function create()
@@ -36,10 +37,20 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // dd($data);
         $post_id = Post::insertGetId([
-            'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['user_id'], 'status' => 1
+            'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['userId'], 'status' => 1
         ]);
 
+        if($request->image->extension() == 'gif'
+        || $request->image->extension() == 'jpeg'
+        || $request->image->extension() == 'jpg'
+        || $request->image->extension() == 'png')
+
+        {
+        $request->file('image')
+        ->storeAs('public/image', $post_id.'.'.$request->image->extension());
+        }
         return redirect()->route('home');
     }
 }
