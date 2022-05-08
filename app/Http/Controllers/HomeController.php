@@ -55,6 +55,7 @@ class HomeController extends Controller
     }
 
     public function show($id){
+        $user = \Auth::user();
         $post = Post::find($id);
         return view('show',compact('post'))->with('post',$post);
     }
