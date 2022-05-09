@@ -32,7 +32,7 @@
             {{csrf_field()}}
             <input value="{{ $post->id }}" type="hidden" name="post_id" />
             <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
-            <input class="form-control comment-input border-0" placeholder="コメント ..." autocomplete="off" type="text" name="comment" />
+            <input class="form-control message-input border-0" placeholder="コメント ..." autocomplete="off" type="text" name="message" />
         </form>
     </div>
 </div>

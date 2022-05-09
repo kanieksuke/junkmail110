@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/create', 'HomeController@create')->name('create');
 Route::post('/store', 'HomeController@store')->name('store');
 Route::get('/show/{id}', 'HomeController@show')->name('show');
-Route::post('/posts/{comment_id}/comments','CommentsController@store');
+Route::post('/posts/{post_id}/comments','CommentsController@store');
 
 Route::group(['middleware' => 'basicauth'], function() {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
