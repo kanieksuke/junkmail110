@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Comment;
 
 class HomeController extends Controller
 {
@@ -57,6 +58,7 @@ class HomeController extends Controller
     public function show($id){
         $user = \Auth::user();
         $post = Post::find($id);
+        $comments = Comment::where('status', 1)->orderBy('updated_at', 'desc')->get();
         return view('show',compact('post'));
     }
 }
