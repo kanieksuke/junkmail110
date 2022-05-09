@@ -25,6 +25,7 @@
             </div>
         </div>
     </div>
+    @auth
     <div class="card-body line-height">
         <div class="row actions" id="comment-form-post-{{ $post->id }}">
             <form class="w-100" id="new_comment" action="/posts/{{ $post->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
@@ -35,6 +36,7 @@
             </form>
         </div>
     </div>
+    @endauth
     @foreach ($post->comments as $comment)
     <div class="mb-2">
         <span>
