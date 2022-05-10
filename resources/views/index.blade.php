@@ -4,6 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <form method="GET" action="/">
+                <input type="text" placeholder="検索" name="search" value="@if (isset($search)) {{ $search }} @endif" style="width:80%">
+                <button type="submit">検索</button>
+            </form>
+        </div>
+        <div class="col-md-8">
             <div class="card">
                 @foreach($posts AS $post)
                     <div class="card-header">
