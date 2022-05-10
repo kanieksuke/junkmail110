@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="GET" action="/">
-                <input type="search" placeholder="検索" name="search" value="@if (isset($search)) {{ $search }} @endif" style="width:80%">
+                <input type="text" placeholder="検索" name="search" value="@if (isset($search)) {{ $search }} @endif" style="width:80%">
                 <button type="submit">検索</button>
             </form>
         </div>

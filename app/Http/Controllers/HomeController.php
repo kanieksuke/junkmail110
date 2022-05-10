@@ -25,10 +25,22 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $posts = Post::where('status', 1)->orderBy('updated_at', 'desc')->get();
-        return view('index', compact('posts'));
+        $search = $request->input('search');
+        $posts = Post::paginate(20);
+        $query = Post::query();
+        if ($search) {
+            $spaceConversion = mb_convert_kana($search, 's');
+            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+            foreach($wordArraySearched as $value) {
+                $query->where('title', 'like', '%'.$value.'%')
+                    ->orWhere('content', 'like', '%'.$value.'%');
+            }
+            $posts = $query->orderBy('updated_at', 'desc')->paginate(20);
+        }
+        return view('index')->with(['posts' => $posts, 'search' => $search]);
     }
 
     public function create()
