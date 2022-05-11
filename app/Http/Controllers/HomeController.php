@@ -51,6 +51,13 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        $rules = [
+            'title' => ['required'],
+            'content' => ['required'],
+            'image' => ['required']
+        ];
+        $this->validate($request, $rules);
+        
         $data = $request->all();
         $post_id = Post::insertGetId([
             'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['userId'], 'status' => 1

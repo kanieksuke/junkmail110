@@ -8,18 +8,18 @@
                 <div class="card-header">新規投稿</div>
 
                 <div class="card-body">
-                    {{Form::open(['url' => '/store', 'files' => true, 'method' => 'post'])}}
+                    {{Form::open(['url' => '/store', 'files' => true, 'method' => 'post', 'enctype' => 'multipart/form-data'])}}
                     @csrf
                         {{Form::hidden('userId', $user['id'])}}
                         <div class="form-group row">
                             {{Form::label('title', 'タイトル', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                             <div class="col-md-6">
                                 {{Form::text('title', null, ['class' => 'form-control' , 'id' => 'title'])}}
-                                <!-- @error('title') -->
-                                    <!-- <span class="invalid-feedback" role="alert"> -->
-                                        <!-- <strong>{{ $message }}</strong> -->
-                                    <!-- </span> -->
-                                <!-- @enderror -->
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -27,11 +27,11 @@
                             {{Form::label('content', '本文', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                             <div class="col-md-6">
                                 {{Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content'])}}
-                                <!-- @error('content') -->
-                                    <!-- <span class="invalid-feedback" role="alert"> -->
-                                        <!-- <strong>{{ $message }}</strong> -->
-                                    <!-- </span> -->
-                                <!-- @enderror -->
+                                @error('content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
