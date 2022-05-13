@@ -15,11 +15,6 @@
                             {{Form::label('title', 'タイトル', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                             <div class="col-md-6">
                                 {{Form::text('title', null, ['class' => 'form-control' , 'id' => 'title'])}}
-                                @error('title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -27,25 +22,13 @@
                             {{Form::label('content', '本文', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                             <div class="col-md-6">
                                 {{Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content'])}}
-                                @error('content')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                         <label for="image" class="col-md-4 col-form-label text-md-right"></label>
                             <div class="col-md-6">
-                                <!-- <input id="image" type="file" class="form-control @error('file') is-invalid @enderror" name="image"> -->
-                                {{Form::file('image', ['class' => 'custom-file-input', 'id' => 'image'])}}
-                                {{Form::label('image', 'ファイル選択…', ['class' => 'custom-file-label'])}}
-                                <!-- @error('image') -->
-                                    <!-- <span class="invalid-feedback" role="alert"> -->
-                                        <!-- <strong>{{ $image }}</strong> -->
-                                    <!-- </span> -->
-                                <!-- @enderror -->
+                                {{Form::file('image')}}
                             </div>
                         </div>
 
