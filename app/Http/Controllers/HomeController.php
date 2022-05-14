@@ -45,26 +45,37 @@ class HomeController extends Controller
 
     public function create()
     {
-        $user = \Auth::user();
-        return view('create', compact('user'));
+        if (Auth::check()) {
+            $user = \Auth::user();
+            return view('create', compact('user'));
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        $post_id = Post::insertGetId([
-            'title' => $data['title'], 'content' => $data['content'], 'image' => $data['image'], 'user_id' => $data['userId'], 'status' => 1
-        ]);
+        $rules = [
+            'title' => ['required'],
+            'content' => ['required'],
+            'image' => ['required']
+        ];
+        $this->validate($request, $rules);
+        
+        $filenameWithExt = $request->file('image')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('image')->getClientOriginalExtension();
+        $filenameToStore = $filename."_".time().".".$extension;
+        $path = $request->file('image')->storeAs('public/image', $filenameToStore);
 
-        if($request->image->extension() == 'gif'
-        || $request->image->extension() == 'jpeg'
-        || $request->image->extension() == 'jpg'
-        || $request->image->extension() == 'png')
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->image = $filenameToStore;
+        $post->user_id = $request->input('userId');
+        $post->status = 1;
+        $post->save();
 
-        {
-        $request->file('image')
-        ->storeAs('public/image', $post_id.'.'.$request->image->extension());
-        }
         return redirect()->route('home');
     }
 
