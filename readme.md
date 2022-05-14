@@ -25,6 +25,9 @@
 そこで、同じメールが送られてきた、という情報を他のユーザーと共有する事で、不安を取り除くのに一役買う事ができればという考えから当該アプリケーションを開発する事にしました。
 # 洗い出した要件
 [要件を定義したシート](https://docs.google.com/spreadsheets/d/1w0f2LKN0eSovQbMAn5-qOVLs4eR0CB4EXwejvZXZF0Y/edit#gid=982722306)
+# 実装した機能についての画像
+- [ユーザー新規登録](https://gyazo.com/6c61731116b3dddaf6bf6bb7718a64b7)<br>
+- [ユーザーログイン](https://gyazo.com/67aa1adfc169e56de88d364656c5f381)<br>
 # データベース設計
 [![Image from Gyazo](https://i.gyazo.com/d5f6c85218e9765e150e2e4e811aff09.png)](https://gyazo.com/d5f6c85218e9765e150e2e4e811aff09)
 
