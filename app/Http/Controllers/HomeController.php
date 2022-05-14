@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $posts = Post::where('status', 1)->orderBy('updated_at', 'desc')->get();
         $search = $request->input('search');
-        $posts = Post::paginate(20);
+        // $posts = Post::paginate(20);
         $query = Post::query();
         if ($search) {
             $spaceConversion = mb_convert_kana($search, 's');
@@ -62,16 +62,10 @@ class HomeController extends Controller
         ];
         $this->validate($request, $rules);
         
-        $filenameWithExt = $request->file('image')->getClientOriginalName();
-        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        $extension = $request->file('image')->getClientOriginalExtension();
-        $filenameToStore = $filename."_".time().".".$extension;
-        $path = $request->file('image')->storeAs('public/image', $filenameToStore);
-
         $post = new Post;
         $post->title = $request->input('title');
         $post->content = $request->input('content');
-        $post->image = $filenameToStore;
+        $post->image = base64_encode(file_get_contents($request->image));
         $post->user_id = $request->input('userId');
         $post->status = 1;
         $post->save();

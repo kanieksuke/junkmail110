@@ -17,15 +17,16 @@
                     </div>
                     <div class="card-body">
                             <div class="alert alert-success">
-                                @if(file_exists(public_path().'/storage/image/'. $post->id .'.jpg'))
-                                    <img src="/storage/image/{{ $post->id }}.jpg" width=300px/>
-                                @elseif(file_exists(public_path().'/storage/image/'. $post->id .'.jpeg'))
-                                    <img src="/storage/image/{{ $post->id }}.jpeg" width=300px/>
-                                @elseif(file_exists(public_path().'/storage/image/'. $post->id .'.png'))
-                                    <img src="/storage/image/{{ $post->id }}.png" width=300px/>
-                                @elseif(file_exists(public_path().'/storage/image/'. $post->id .'.gif'))
-                                    <img src="/storage/image/{{ $post->id }}.gif" width=300px/>
-                                @endif
+                                <img src="data:image/png;base64,{{ $post->image }}" alt="image" style="width:30%; height: auto;">
+                                <!-- @if(file_exists(public_path().'/storage/image/'. $post->id .'.jpg')) -->
+                                    <!-- <img src="/storage/image/{{ $post->id }}.jpg" width=300px/> -->
+                                <!-- @elseif(file_exists(public_path().'/storage/image/'. $post->id .'.jpeg')) -->
+                                    <!-- <img src="/storage/image/{{ $post->id }}.jpeg" width=300px/> -->
+                                <!-- @elseif(file_exists(public_path().'/storage/image/'. $post->id .'.png')) -->
+                                    <!-- <img src="/storage/image/{{ $post->id }}.png" width=300px/> -->
+                                <!-- @elseif(file_exists(public_path().'/storage/image/'. $post->id .'.gif')) -->
+                                    <!-- <img src="/storage/image/{{ $post->id }}.gif" width=300px/> -->
+                                <!-- @endif -->
                             </div>
                             <a href="/show/{{$post->id}}">詳細</a>
                     </div>
