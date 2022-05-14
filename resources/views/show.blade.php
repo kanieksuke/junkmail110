@@ -6,12 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    {{ $post['title'] }} by {{ $post->user->name }}
+                    <h3>{{ $post['title'] }}</h3> by {{ $post->user->name }}
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-success">
-                        <img src="data:image/png;base64,{{ $post->image }}" alt="image" style="width: 30%; height: auto;">
-                    </div>
+                    <img src="data:image/png;base64,{{ $post->image }}" alt="image" style="width: 100%; height: 500px;">
+                </div>
+                <div class="card-body">
                     {{ $post['content']}}
                 </div>
             </div>
