@@ -1,72 +1,46 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# アプリケーション名
+迷惑メール110番
+# アプリケーション概要
+投稿者はなりすましメールの情報と画像を投稿し、注意を促します。
+利用者はなりすましメールかどうか判別できないメールが送られてきた時、タイトルまたは本文の一部をコピペしてアプリで検索し、情報を共有する事でなりすましメールを判別します。
+# URL
+[https://junkmail110.herokuapp.com/](https://junkmail110.herokuapp.com/)
+#　テスト用アカウント
+- Basic認証ID:admin
+- Basic認証パスワード：2222
+- メールアドレス：user@gmail.com
+- パスワード：junkmail110
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# 利用方法
+### 投稿者
+- アカウントを持っているユーザーは「Login」のリンクをクリックし、ログイン画面でログインします。
+- アカウントを持っていないユーザーは「Register」のリンクをクリックし、サインアップ画面でアカウントを登録します。
+- 投稿するのリンクをクリックし、新規投稿画面でタイトル、本文を入力、画像を添付して「送信」ボタンで投稿完了
+### 利用者
+- 送られてきたメールのタイトルまたは本文の一部を検索窓にコピペして、該当のメールが投稿していないか確認します。
+- 同じメールの投稿を確認する事で、なりすましメールである事を共有できます。
+- メール情報の他、他のユーザーからのコメントも閲覧できます。また、ログインしている場合は自身もコメントを投稿できます。
+# アプリケーションを作成した背景
+- 最近のなりすましメールの中には精度の高いものが多く、無闇にクリックしてしまう事はなくても「本当に放っておいていいのだろうか？」と不安になる人もいるのではないかと考えました。
+そこで、同じメールが送られてきた、という情報を他のユーザーと共有する事で、不安を取り除くのに一役買う事ができればという考えから当該アプリケーションを開発する事にしました。
+# 洗い出した要件
+[要件を定義したシート](https://docs.google.com/spreadsheets/d/1w0f2LKN0eSovQbMAn5-qOVLs4eR0CB4EXwejvZXZF0Y/edit#gid=982722306)
+# データベース設計
+[![Image from Gyazo](https://i.gyazo.com/d5f6c85218e9765e150e2e4e811aff09.png)](https://gyazo.com/d5f6c85218e9765e150e2e4e811aff09)
 
-## About Laravel
+# 画面遷移図
+[![Image from Gyazo](https://i.gyazo.com/97656d053fde6143be4858e0dc7bf459.png)](https://gyazo.com/97656d053fde6143be4858e0dc7bf459)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 開発環境
+- フロントエンド:HTML,CSS
+- バックエンド:PHP(Laravel)
+- インフラ:heroku
+- テキストエディタ:VSCode
+- タスク管理:GitHub
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# ローカルでの動作方法
+以下のコマンドを順に実行<br>
+% git clone https://github.com/kanieksuke/junkmail110<br>
+% cd mammon-quest<br>
+% bundle install<br>
+% yarn install<br>
