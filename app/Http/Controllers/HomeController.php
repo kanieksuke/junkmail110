@@ -45,8 +45,12 @@ class HomeController extends Controller
 
     public function create()
     {
-        $user = \Auth::user();
-        return view('create', compact('user'));
+        if (Auth::check()) {
+            $user = \Auth::user();
+            return view('create', compact('user'));
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function store(Request $request)
