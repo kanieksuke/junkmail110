@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -63,10 +64,12 @@ class HomeController extends Controller
         $this->validate($request, $rules);
         
         $post = new Post;
+        $uploadImage = $post->image = $request->file('image');
+        $path = Storage::disk('s3')->putFile('/junkmail110', $uploadImage, 'public');
         $post->title = $request->input('title');
         $post->content = $request->input('content');
-        $post->image = base64_encode(file_get_contents($request->image));
-        $post->user_id = $request->input('userId');
+        $post->image = Storage::disk('s3')->url($path);
+        $post->user_id = Auth::user()->id;
         $post->status = 1;
         $post->save();
 
