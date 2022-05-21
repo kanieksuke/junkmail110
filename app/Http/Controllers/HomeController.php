@@ -87,6 +87,6 @@ class HomeController extends Controller
         $user = \Auth::user();
         $post = Post::where('status', 1)->where('id', $id)->where('user_id', $user['id'])
             ->first;
-        return view('edit',compact('user'));
+        return view('edit',compact('post'));
     }
 }
