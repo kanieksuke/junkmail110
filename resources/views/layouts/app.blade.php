@@ -61,12 +61,15 @@
                                                         document.getElementById('logout-form').submit();">
                                             {{ __('ログアウト') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('users/show') }}"
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>                                        
+                                        <a class="dropdown-item" href="{{ auth()->user()->name }}"
                                         onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                                        document.getElementById('mypage-form').submit();">
                                             {{ __('マイページ') }}
                                         </a>                                        
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="mypage-form" action="{{ route('my_page') }}" method="GET" style="display: none;">
                                             @csrf
                                         </form>
                                     </div>

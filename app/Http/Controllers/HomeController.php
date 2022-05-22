@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $user = \Auth::user();
         $posts = Post::where('status', 1)->orderBy('updated_at', 'desc')->get();
         $search = $request->input('search');
         // $posts = Post::paginate(20);

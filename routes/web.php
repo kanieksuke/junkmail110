@@ -25,7 +25,9 @@ Route::get('/edit/{id}', 'HomeController@edit')->name('edit');
 
 Route::post('/posts/{post_id}/comments','CommentsController@store');
 
-Route::get('/users/show/{id}', 'UsersController@show')->name('show');
+Route::middleware('auth')->group(function () {
+    Route::view('my_page', 'my_page')->name('my_page');
+});
 
 Route::group(['middleware' => 'basicauth'], function() {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

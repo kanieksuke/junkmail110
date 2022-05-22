@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-    public function show($id){
+    public function my_page($id){
         $user = \Auth::user();
         $posts = Post::where('user_id', $user['id'])->where('status', 1)->orderBy('updated_at', 'desc')->get();
-        return view('show',compact('post'));
+        return view('my_page',compact('post'));
     }
 }
