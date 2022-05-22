@@ -64,12 +64,12 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>                                        
-                                        <a class="dropdown-item" href="{{ auth()->user()->name }}"
+                                        <a class="dropdown-item" href="{{ route('my_page', ['id' => auth()->user()->id]) }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('mypage-form').submit();">
                                             {{ __('マイページ') }}
                                         </a>                                        
-                                        <form id="mypage-form" action="{{ route('my_page') }}" method="GET" style="display: none;">
+                                        <form id="mypage-form" action="{{ route('my_page', ['id' => auth()->user()->id]) }}" method="GET" style="display: none;">
                                             @csrf
                                         </form>
                                     </div>
