@@ -19,7 +19,8 @@
                             <div class="alert alert-success">
                                 <img src="{{ $post->image }}" alt="image" style="width:30%; height: auto;">
                             </div>
-                            <a href="/show/{{$post->id}}">詳細</a>
+                            <a href="/show/{{$post->id}}" style="margin:20px;">詳細</a>
+                            <a href="/show/{{$post->id}}">編集</a>
                     </div>
                 @endforeach
             </div>
