@@ -89,7 +89,7 @@ class HomeController extends Controller
             if (Auth::check()) {
                 $user = \Auth::user();
                 $post = Post::where('status', 1)->where('id', $id)->where('user_id', $user['id'])
-                ->first;
+                ->first();
                 return view('edit', compact('post'));
             } else {
                 return redirect('/login');
