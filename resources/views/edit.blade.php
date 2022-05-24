@@ -8,9 +8,9 @@
                 <div class="card-header">投稿内容編集</div>
 
                 <div class="card-body">
-                    {{Form::open(['url' => '/store', 'files' => true, 'method' => 'post', 'enctype' => 'multipart/form-data'])}}
+                    {{Form::open(['url' => '/update/{id}', 'files' => true, 'method' => 'post', 'enctype' => 'multipart/form-data'])}}
+                    {{Form::hidden('userId', $user['id'])}}
                     @csrf
-                        {{Form::hidden('userId', $user['id'])}}
                         <div class="form-group row">
                             {{Form::label('title', 'タイトル', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                             <div class="col-md-6">
@@ -34,9 +34,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <!-- <button type="submit" class="btn btn-primary"> -->
                                     {{ __('送信') }}
-                                </button>
                                 {{Form::submit('送信', ['class' => 'btn btn-primary btn-block'])}}
                             </div>
                         </div>

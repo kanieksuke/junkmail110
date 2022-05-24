@@ -90,10 +90,32 @@ class HomeController extends Controller
                 $user = \Auth::user();
                 $post = Post::where('status', 1)->where('id', $id)->where('user_id', $user['id'])
                 ->first();
-                return view('edit', compact('post'));
+                return view('edit', compact('post', 'user'));
             } else {
                 return redirect('/login');
             }
         }        
+    }
+
+    public function update(Request $request, $id){
+        $rules = [
+            'title' => ['required'],
+            'content' => ['required'],
+            'image' => ['required']
+        ];
+        $this->validate($request, $rules);
+
+        $post = $request->all();
+        dd($post);
+        $uploadImage = $post->image;
+        $path = Storage::disk('s3')->putFile('/junkmail110', $uploadImage, 'public');
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->image = Storage::disk('s3')->url($path);
+        $post->user_id = Auth::user()->id;
+        $post->status = 1;
+        $post->save();
+
+        return redirect()->route('home');
     }
 }
