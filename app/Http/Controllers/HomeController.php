@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $user = \Auth::user();
         $posts = Post::where('status', 1)->orderBy('updated_at', 'desc')->get();
         $search = $request->input('search');
         // $posts = Post::paginate(20);
@@ -81,5 +82,39 @@ class HomeController extends Controller
         $post = Post::find($id);
         $comments = Comment::where('status', 1)->orderBy('updated_at', 'desc')->get();
         return view('show',compact('post'));
+    }
+
+    public function edit($id){
+        {
+            if (Auth::check()) {
+                $user = \Auth::user();
+                $post = Post::where('status', 1)->where('id', $id)->where('user_id', $user['id'])
+                ->first();
+                return view('edit', compact('post', 'user'));
+            } else {
+                return redirect('/login');
+            }
+        }        
+    }
+
+    public function update(Request $request, Post $post){
+        $rules = [
+            'title' => ['required'],
+            'content' => ['required'],
+            'image' => ['required']
+        ];
+        $this->validate($request, $rules);
+
+        $image = $request->file('image');
+        $path = $post->image;
+        \Storage::disk('s3')->delete($path);
+        $path = $image->store('posts', 's3');
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $path,
+        ]);
+
+        return redirect('/my_page/{id}');
     }
 }
