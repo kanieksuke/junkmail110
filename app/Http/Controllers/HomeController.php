@@ -97,7 +97,7 @@ class HomeController extends Controller
         }        
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, Post $post){
         $rules = [
             'title' => ['required'],
             'content' => ['required'],
@@ -105,17 +105,16 @@ class HomeController extends Controller
         ];
         $this->validate($request, $rules);
 
-        $post = $request->all();
-        dd($post);
-        $uploadImage = $post->image;
-        $path = Storage::disk('s3')->putFile('/junkmail110', $uploadImage, 'public');
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
-        $post->image = Storage::disk('s3')->url($path);
-        $post->user_id = Auth::user()->id;
-        $post->status = 1;
-        $post->save();
+        $image = $request->file('image');
+        $path = $post->image;
+        \Storage::disk('s3')->delete($path);
+        $path = $image->store('posts', 's3');
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $path,
+        ]);
 
-        return redirect()->route('home');
+        return redirect('/my_page/{id}');
     }
 }
