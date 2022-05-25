@@ -20,6 +20,13 @@
                                 <img src="{{ $post->image }}" alt="image" style="width:30%; height: auto;">
                             </div>
                             <a href="/show/{{$post->id}}">詳細</a>
+                            @if(auth()->user()->id == $post->user_id)
+                                <a href="/edit/{{$post->id}}" style="margin:20px;">編集</a>
+                                <form method="post" action="{{ route('delete', $post->id) }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">削除</button>
+                                </form>
+                            @endif
                     </div>
                 @endforeach
             </div>
