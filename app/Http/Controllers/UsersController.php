@@ -9,8 +9,14 @@ use App\Post;
 class UsersController extends Controller
 {
     public function my_page($id){
-        $user = \Auth::user();
-        $posts = Post::where('user_id', $user['id'])->where('status', 1)->orderBy('updated_at', 'desc')->get();
-        return view('my_page',compact('posts'));
+        {
+            if (Auth::check()) {
+                $user = \Auth::user();
+                $posts = Post::where('user_id', $user['id'])->where('status', 1)->orderBy('updated_at', 'desc')->get();
+                return view('my_page',compact('posts'));
+            } else {
+                return redirect('/login');
+            }
+        }        
     }
 }
