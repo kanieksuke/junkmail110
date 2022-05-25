@@ -117,4 +117,12 @@ class HomeController extends Controller
 
         return redirect('/my_page/{id}');
     }
+
+    public function delete(Request $request, $id){
+        $inputs = $request->all();
+        Post::where('id', $id)->update([ 'status' => 2 ]);
+        return redirect('/my_page/{id}');
+    }
 }
+
+
